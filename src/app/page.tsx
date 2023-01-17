@@ -1,5 +1,8 @@
 import './globals.css';
 import SearchBar from '../Components/SearchBar/SearchBar';
+import DogCard from '../Components/DogCard/DogCard';
+import Footer from '../Components/Footer/Footer';
+import { mockDogCardProps } from '../Components/DogCard/DogCard.mock';
 
 export default function Home() {
   return (
@@ -12,7 +15,9 @@ export default function Home() {
       </p>
       <main>
         <SearchBar />
+        <DogCard {...mockDogCardProps.base }/>
       </main>
+      <Footer/>
     </div>
   );
 }

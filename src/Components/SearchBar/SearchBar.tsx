@@ -1,9 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import imageLoad from 'imageLoader';
+import imageLoad from '../../../imageLoader';
 
-import useDebounce from '@/hooks/useDebounce';
+import useDebounce from '../../hooks/useDebounce';
 
 import { Breeds } from '@/models/types';
 import Link from 'next/link';
@@ -57,13 +57,13 @@ const SearchBar: React.FC<ISearchBar> = () => {
 
   return (
     <>
-      <div className="rounded-lg m-1 p-2 bg-green-700 border-green-700  border-2 w-fit  hover:drop-shadow-md hover:bg-green-800 focus:bg-green-800 focus-within:border-green-800">
+      <div className="rounded-lg m-1 p-2 bg-green-700 border-green-700  border-2 min-w-xs  hover:drop-shadow-md hover:bg-green-800 focus:bg-green-800 focus-within:border-green-800">
         <label className='flex justify-center align-middle gap-2'>
           <input
             type="text"
             value={search}
             onChange={handleChange}
-            className="w-[450px] outline-none p-2 rounded-lg"
+            className="w-full outline-none p-2 rounded-lg"
             placeholder="type here.."
           />
           <button>
