@@ -1,7 +1,3 @@
-export interface GetBreedResults {
-  breeds: Breeds[];
-}
-
 export interface Breeds {
   weight: Eight;
   height: Eight;
