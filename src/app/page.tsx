@@ -2,25 +2,33 @@
 import './globals.css';
 
 import { useState, useEffect } from 'react';
-import { Breeds, BreedsName } from '@/models/types';
+import { Breeds } from '@/models/types';
 
-async function getBreeds() {
-  try {
+
+async function getBreedsName(search:string):Promise<string[]> {
+
     const res = await fetch(
       'https://api.thedogapi.com/v1/breeds?api_key=live_YXejSYT0lmejDsPBw4qk6YVyRbGnP8HIGe489tK26eJkzKOAi7gmnMPhGLzlwQ3o',
       { cache: 'force-cache' }
     );
     const breeds: Breeds[] = await res.json();
-    console.log('breeds', breeds)
-    return breeds;
-  } catch (error) {
-    console.log(error);
-  }
+    const breedsNames = breeds.map((breed)=>breed.name)
+
+
+    return new Promise((resolve)=>{
+      setTimeout(()=>{
+        resolve(
+          breedsNames.filter((breedName)=>breedName.toLowerCase().includes(search.toLowerCase()))
+        )
+      },500)
+    })
+
+
 }
 
 export default function Home() {
   const [search, setSearch] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<[] >([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
@@ -31,8 +39,9 @@ export default function Home() {
         return;
       }
    
-      const data = await getBreeds();
+      const data = await getBreedsName(search);
       setSuggestions(data);
+      console.log('data', data)
     })();
   }, [search]);
 
@@ -53,8 +62,8 @@ export default function Home() {
           placeholder="type here.."
         />
         <div>
-          {suggestions.map((suggestion:BreedsName) => {
-            return <div key={suggestion.id}>{suggestion.name}</div>;
+          {suggestions  && suggestions.map((suggestion, index) => {
+            return <div key={index}>{suggestion}</div>;
           })}
         </div>
       </main>
