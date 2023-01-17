@@ -2,7 +2,7 @@
 import { Breeds } from '../../models/types';
 import imageLoader from '../../../imageLoader';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const DogCard = ({
   id,
@@ -18,10 +18,9 @@ const DogCard = ({
   referenceImageID,
 }: Breeds) => {
   const [favorite, setFavorite] = useState(false);
-  
+
   const handleClick = () => {
     setFavorite((favorite) => !favorite);
-    
   };
   return (
     <div className="m-4 p-4 bg-slate-300 rounded-lg min-w-xs " key={id}>
@@ -33,22 +32,23 @@ const DogCard = ({
           height={300}
           width={300}
           alt={referenceImageID}
-          className='rounded-lg'
+          className="rounded-lg"
         />
       </div>
-      <h2 className="text-xl font-semibold border-b border-b-green-700 mb-2">Name: {name}</h2>
-      <div className='flex flex-col gap-2'>
-
-      <div>Temperament: {temperament}</div>
-      <div>Description: {description}</div>
-      <div>Origin is: {origin}</div>
-      <div>Breed for: {bredFor}</div>
-      <div>Breed group is: {breedGroup}</div>
-      <div>Weight: {weight.metric} kg</div>
-      <div>Height: {height.metric} cm</div>
-      <div>Life span is: {lifeSpan} average</div>
+      <h2 className="text-xl font-semibold border-b border-b-green-700 mb-2">
+        Name: {name}
+      </h2>
+      <div className="flex flex-col gap-2">
+        <div>Breed for: {bredFor}</div>
+        <div>Breed group is: {breedGroup}</div>
+        <div>Temperament: {temperament}</div>
+        <div>Description: {description}</div>
+        <div>Origin is: {origin}</div>
+        <div>Weight: {weight.metric} kg</div>
+        <div>Height: {height.metric} cm</div>
+        <div>Life span is: {lifeSpan} average</div>
       </div>
-      <button className='p-2' onClick={handleClick}>
+      <button className="p-2" onClick={handleClick}>
         {favorite ? (
           <Image
             loader={imageLoader}

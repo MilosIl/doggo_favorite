@@ -10,7 +10,7 @@ export default function Home() {
       <h1 className="text-2xl font-extrabold  text-zinc-800">
         Welcome to Doggo site
       </h1>
-      <p className="mt-2 mb-6 uppercase text-xl font-bold  text-zinc-800">
+      <p className="mt-2 mb-6 uppercase text-lg font-bold  text-zinc-800">
         find information about breed of dogs
       </p>
       <main>
