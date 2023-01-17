@@ -18,6 +18,7 @@ export interface Breeds {
   description?: string;
   history?: string;
 }
+export type BreedsName = Pick<Breeds, 'name'| 'id'>
 
 export type BreedGroup =
   | 'Toy'
