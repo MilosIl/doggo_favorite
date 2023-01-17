@@ -1,5 +1,6 @@
 'use client';
 import './globals.css';
+
 import { useState, useEffect } from 'react';
 import { Breeds, BreedsName } from '@/models/types';
 
@@ -19,8 +20,8 @@ async function getBreeds() {
 
 export default function Home() {
   const [search, setSearch] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<[]>([]);
-  const handleChange = (e) => {
+  const [suggestions, setSuggestions] = useState<[] >([]);
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
