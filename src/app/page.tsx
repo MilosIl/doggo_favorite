@@ -1,15 +1,15 @@
 import './globals.css';
 import SearchBar from '../Components/SearchBar/SearchBar';
-import DogCard from '../Components/DogCard/DogCard';
 import FavoriteList from '../Components/FavoriteList/FavoriteList';
 import Footer from '../Components/Footer/Footer';
-import { mockDogCardProps } from '../Components/DogCard/DogCard.mock';
+
+
 
 export default function Home() {
   return (
     <>
       <div className="min-h-screen">
-        <FavoriteList />
+        <FavoriteList  />
         <div className="flex flex-col justify-center items-center mx-auto">
           <h1 className="text-2xl font-extrabold  text-zinc-800">
             Welcome to Doggo site
@@ -19,7 +19,7 @@ export default function Home() {
           </p>
           <main>
             <SearchBar />
-            <DogCard {...mockDogCardProps.base} />
+            
           </main>
         </div>
       </div>
