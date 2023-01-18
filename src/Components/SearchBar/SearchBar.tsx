@@ -78,10 +78,10 @@ const SearchBar: React.FC<ISearchBar> = () => {
           </button>
         </label>
       </div>
-      <ul className='bg-green-300'>
+      <ul className='bg-slate-200'>
         {suggestions &&
           suggestions.map((suggestion, index) => {
-            return <li key={index} className='odd:bg-green-300 my-2 p-2 hover:bg-green-500 cursor-pointer'><Link href={`results/${suggestion}`}>{suggestion}</Link></li>;
+            return <li key={index} className='odd:bg-slate-300 mt-2 p-2 hover:bg-green-500 cursor-pointer'><Link href={`results/${suggestion}`}>{suggestion}</Link></li>;
           })}
       </ul>
     </>
