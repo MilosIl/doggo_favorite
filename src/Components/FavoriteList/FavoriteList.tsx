@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface IFavoriteList {}
 
 const FavoriteList: React.FC<IFavoriteList> = () => {
