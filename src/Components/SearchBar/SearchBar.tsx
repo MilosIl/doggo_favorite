@@ -1,13 +1,11 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import imageLoad from '../../../imageLoader';
-
 import useDebounce from '../../hooks/useDebounce';
 
-import { Breeds } from '@/models/types';
-import Link from 'next/link';
-
+import { Breeds } from '../../models/types';
 
 export interface ISearchBar {}
 
@@ -31,6 +29,7 @@ async function getBreedsName(search: string): Promise<string[]> {
 }
 
 const SearchBar: React.FC<ISearchBar> = () => {
+
   const [search, setSearch] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const debounceSearch = useDebounce(search, 500);
@@ -78,10 +77,10 @@ const SearchBar: React.FC<ISearchBar> = () => {
           </button>
         </label>
       </div>
-      <ul className='bg-slate-200'>
+      <ul className='bg-slate-200 list-none'>
         {suggestions &&
           suggestions.map((suggestion, index) => {
-            return <li key={index} className='odd:bg-slate-300 mt-2 p-2 hover:bg-green-500 cursor-pointer'><Link href={`results/${suggestion}`}>{suggestion}</Link></li>;
+            return <li key={index} className='odd:bg-slate-300 mt-2 p-2 hover:bg-green-500 cursor-pointer'>{suggestion}</li>;
           })}
       </ul>
     </>
