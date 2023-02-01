@@ -1,5 +1,6 @@
 import './globals.css';
 import SearchBar from '../Components/SearchBar/SearchBar';
+import SearchBar1 from '../Components/SearchBar/SearchBar1';
 import FavoriteList from '../Components/FavoriteList/FavoriteList';
 import Footer from '../Components/Footer/Footer';
 
@@ -10,7 +11,7 @@ import {FavoriteContext} from '../context/FavoriteContext'
 export default function Home() {
 
   return (
-    <FavoriteContext.Provider value={FavoriteContext}>
+    <>
       <div className="min-h-screen">
         <FavoriteList  />
         <div className="flex flex-col justify-center items-center mx-auto">
@@ -21,11 +22,12 @@ export default function Home() {
             find information about breed of dogs
           </p>
           <main>
-            <SearchBar />
+            {/* <SearchBar /> */}
+            <SearchBar1 />
           </main>
         </div>
       </div>
       <Footer />
-    </FavoriteContext.Provider>
+    </>
   );
 }

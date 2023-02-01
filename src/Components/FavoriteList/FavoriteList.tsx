@@ -11,8 +11,9 @@ const FavoriteList: React.FC<IFavoriteList> = () => {
         List of favorite dogs
       </p>
       <ul className='list-none'>
-        {favoriteContexts.map((favoriteContext, index) => {
+        {favoriteContexts?.map((favoriteContext, index) => {
           return (
+            favoriteContext && 
             <li key={index} className="p-2 text-base ">
               {favoriteContext}
             </li>

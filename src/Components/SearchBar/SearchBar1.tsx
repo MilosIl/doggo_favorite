@@ -4,33 +4,28 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import imageLoad from '../../../imageLoader';
 import useDebounce from '../../hooks/useDebounce';
+import DogCard from '../DogCard/DogCard';
+import IDogCard from '../DogCard/DogCard';
 import { Breeds } from '../../models/types';
 
 export interface ISearchBar {}
 
-async function getBreedsName(search: string): Promise<string[]> {
+async function getBreeds(search: string): Promise<string[]> {
   const res = await fetch(
     'https://api.thedogapi.com/v1/breeds?api_key=live_YXejSYT0lmejDsPBw4qk6YVyRbGnP8HIGe489tK26eJkzKOAi7gmnMPhGLzlwQ3o',
     { cache: 'force-cache' }
   );
   const breeds: Breeds[] = await res.json();
-  const breedsNames = breeds.map((breed) => breed.name);
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(
-        breedsNames.filter((breedName) =>
-          breedName.toLowerCase().includes(search.toLowerCase())
-        )
-      );
-    }, 500);
+  return new Promise(() => {
+    breeds as unknown
   });
 }
 
 const SearchBar: React.FC<ISearchBar> = () => {
 
   const [search, setSearch] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [allBreeds,setAllBreeds]=useState<string[]>([])
   const debounceSearch = useDebounce(search, 500);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,11 +35,13 @@ const SearchBar: React.FC<ISearchBar> = () => {
   useEffect(() => {
     let isLoading = false;
     (async () => {
-      setSuggestions([]);
+      setAllBreeds([]);
       if (debounceSearch.length > 0) {
-        const data = await getBreedsName(debounceSearch);
+        const data = await getBreeds(debounceSearch);
+        const dataAll = await getBreeds(debounceSearch);
         if (!isLoading) {
-          setSuggestions(data);
+          setAllBreeds(data);
+          setAllBreeds(dataAll)
         }
       }
       return () => {
@@ -77,10 +74,9 @@ const SearchBar: React.FC<ISearchBar> = () => {
         </label>
       </div>
       <ul className='bg-slate-200 list-none'>
- 
-        {suggestions &&
-          suggestions.map((suggestion, index) => {
-            return <li key={index} className='odd:bg-slate-300 mt-2 p-2 hover:bg-green-500 cursor-pointer'>{suggestion}</li>;
+        {allBreeds &&
+          allBreeds.map((allBreed:typeof IDogCard, index) => {
+            return <DogCard key={index} weight={allBreed.weight} height={undefined} id={allBreed.id} name={allBreed.name} lifeSpan={allBreed.lifeSpan} referenceImageID={''} image={undefined} />
           })}
       </ul>
     </>
