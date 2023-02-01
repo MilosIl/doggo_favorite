@@ -1,6 +1,9 @@
 # Favorite Doggo
 
-Website that shows you some of important information about breeds of dogs. You can save your favorite breeds for later to check again information about them
+This is example project, unfinished
+
+Website that shows you some of important information about breeds of dogs. You can save your favorite breeds for later to check again information about them. 
+
 
 it uses API from
 ``` https://api.thedogapi.com/v1/ ```
