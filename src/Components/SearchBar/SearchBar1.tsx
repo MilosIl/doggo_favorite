@@ -75,8 +75,8 @@ const SearchBar: React.FC<ISearchBar> = () => {
       </div>
       <ul className='bg-slate-200 list-none'>
         {allBreeds &&
-          allBreeds.map((allBreed:typeof IDogCard, index) => {
-            return <DogCard key={allBreed.id} {...allBreed} />
+          allBreeds.map((allBreed:typeof IDogCard,index) => {
+            return <DogCard key={index} {...allBreed} />
           })}
       </ul>
     </>
