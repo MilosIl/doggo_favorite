@@ -1,4 +1,4 @@
-import { FavoriteContext } from '@/context/FavoriteContext';
+import { FavoriteContext } from '../../context/FavoriteContext';
 import { useContext } from 'react';
 
 export interface IFavoriteList {}
@@ -11,7 +11,7 @@ const FavoriteList: React.FC<IFavoriteList> = () => {
         List of favorite dogs
       </p>
       <ul className='list-none'>
-        {favoriteContexts?.map((favoriteContext, index) => {
+        {favoriteContexts.length>0 &&  favoriteContexts.map((favoriteContext, index) => {
           return (
             favoriteContext && 
             <li key={index} className="p-2 text-base ">

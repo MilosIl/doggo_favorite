@@ -2,7 +2,8 @@
 import { Breeds } from '../../models/types';
 import imageLoader from '../../../imageLoader';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { FavoriteContext } from '@/context/FavoriteContext';
 
 const DogCard = ({
   id,
@@ -17,10 +18,19 @@ const DogCard = ({
   description,
   referenceImageID,
 }: Breeds) => {
-  const [favorite, setFavorite] = useState(false);
-
+  const [isFavorite, setIsFavorite] = useState(true);
+  const favoriteList = useContext(FavoriteContext);
+  const [favorite, setFavorite]=useState(favoriteList)
   const handleClick = () => {
-    setFavorite((favorite) => !favorite);
+    setIsFavorite(!isFavorite);
+
+    if (isFavorite) {
+      favorite.length > 0 && setFavorite([name])
+
+      console.log('favoriteList', favoriteList);
+    } else {
+      favoriteList.length > 0 && favoriteList.pop();
+    }
   };
   return (
     <div className="m-4 p-4 bg-slate-300 rounded-lg min-w-xs " key={id}>
@@ -49,16 +59,7 @@ const DogCard = ({
         <div>Life span is: {lifeSpan} average</div>
       </div>
       <button className="p-2" onClick={handleClick}>
-        {favorite ? (
-          <Image
-            loader={imageLoader}
-            unoptimized
-            src="./hearth_full.svg"
-            width="35"
-            height="35"
-            alt="hearth_full"
-          />
-        ) : (
+        {isFavorite ? (
           <Image
             src="./hearth.svg"
             loader={imageLoader}
@@ -66,6 +67,15 @@ const DogCard = ({
             width="35"
             height="35"
             alt="hearth"
+          />
+        ) : (
+          <Image
+            loader={imageLoader}
+            unoptimized
+            src="./hearth_full.svg"
+            width="35"
+            height="35"
+            alt="hearth_full"
           />
         )}
       </button>
