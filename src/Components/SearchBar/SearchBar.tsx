@@ -77,7 +77,6 @@ const SearchBar: React.FC<ISearchBar> = () => {
         </label>
       </div>
       <ul className='bg-slate-200 list-none'>
- 
         {suggestions &&
           suggestions.map((suggestion, index) => {
             return <li key={index} className='odd:bg-slate-300 mt-2 p-2 hover:bg-green-500 cursor-pointer'>{suggestion}</li>;

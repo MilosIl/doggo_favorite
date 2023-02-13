@@ -18,10 +18,10 @@ const base: Breeds = {
   temperament: 'Stubborn, Curious, Playful, Adventurous, Active, Fun-loving',
   referenceImageID: '',
   image: {
-    height: 10,
+    height: 300,
     id: '',
     url: 'https://cdn2.thedogapi.com/images/BJa4kxc4X.jpg',
-    width: 10,
+    width: 300,
   },
 };
 

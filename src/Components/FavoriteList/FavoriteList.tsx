@@ -10,15 +10,17 @@ const FavoriteList: React.FC<IFavoriteList> = () => {
       <p className="text-lg font-medium text-center border-b p-2 border-b-green-500 ">
         List of favorite dogs
       </p>
-      <ul className='list-none'>
-        {favoriteContexts.length>0 &&  favoriteContexts.map((favoriteContext, index) => {
-          return (
-            favoriteContext && 
-            <li key={index} className="p-2 text-base ">
-              {favoriteContext}
-            </li>
-          );
-        })}
+      <ul className="list-none">
+        {favoriteContexts.length > 0 &&
+          favoriteContexts.map((favoriteContext, index) => {
+            return (
+              favoriteContext && (
+                <li key={index} className="p-2 text-base ">
+                  {favoriteContext}
+                </li>
+              )
+            );
+          })}
       </ul>
     </div>
   );

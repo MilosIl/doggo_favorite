@@ -15,7 +15,7 @@ import {FavoriteContext} from '../context/FavoriteContext'
 export default function Home() {
 
   return (
-    <FavoriteContext.Provider value={[FavoriteContext]}>
+    <FavoriteContext.Provider value={FavoriteContext}>
       <div className="min-h-screen">
         <FavoriteList  />
         <div className="flex flex-col justify-center items-center mx-auto">

@@ -16,16 +16,15 @@ async function getBreeds(search: string): Promise<string[]> {
     { cache: 'force-cache' }
   );
   const breeds: Breeds[] = await res.json();
-console.log('breeds', breeds)
+  console.log('breeds', breeds);
   return new Promise(() => {
-    breeds as unknown
+    breeds;
   });
 }
 
 const SearchBar: React.FC<ISearchBar> = () => {
-
   const [search, setSearch] = useState<string>('');
-  const [allBreeds,setAllBreeds]=useState<string[]>([])
+  const [allBreeds, setAllBreeds] = useState<string[]>([]);
   const debounceSearch = useDebounce(search, 500);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,10 +37,8 @@ const SearchBar: React.FC<ISearchBar> = () => {
       setAllBreeds([]);
       if (debounceSearch.length > 0) {
         const data = await getBreeds(debounceSearch);
-        const dataAll = await getBreeds(debounceSearch);
         if (!isLoading) {
           setAllBreeds(data);
-          setAllBreeds(dataAll)
         }
       }
       return () => {
@@ -53,7 +50,7 @@ const SearchBar: React.FC<ISearchBar> = () => {
   return (
     <>
       <div className="rounded-lg m-1 p-2 bg-green-700 border-green-700  border-2 min-w-xs  hover:drop-shadow-md hover:bg-green-800 focus:bg-green-800 focus-within:border-green-800">
-        <label className='flex justify-center align-middle gap-2'>
+        <label className="flex justify-center align-middle gap-2">
           <input
             type="text"
             value={search}
@@ -73,11 +70,8 @@ const SearchBar: React.FC<ISearchBar> = () => {
           </button>
         </label>
       </div>
-      <ul className='bg-slate-200 list-none'>
-        {allBreeds &&
-          allBreeds.map((allBreed:typeof IDogCard,index) => {
-            return <DogCard key={index} {...allBreed} />
-          })}
+      <ul className="bg-slate-200 list-none">
+
       </ul>
     </>
   );

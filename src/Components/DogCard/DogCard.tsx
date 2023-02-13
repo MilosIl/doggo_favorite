@@ -6,30 +6,30 @@ import { useContext, useState } from 'react';
 import { FavoriteContext } from '@/context/FavoriteContext';
 
 const DogCard = ({
-  id,
-  breedGroup,
   weight,
   height,
+  id,
   name,
   bredFor,
+  breedGroup, 
   lifeSpan,
-  origin,
   temperament,
-  description,
+  origin,
   referenceImageID,
+  image,
+  countryCode,
+  description,
+  history,
 }: Breeds) => {
   const [isFavorite, setIsFavorite] = useState(true);
   const favoriteList = useContext(FavoriteContext);
-  const [favorite, setFavorite]=useState(favoriteList)
+  const [favorite, setFavorite] = useState(favoriteList);
+
   const handleClick = () => {
     setIsFavorite(!isFavorite);
-
     if (isFavorite) {
-      favorite.length > 0 && setFavorite([name])
-
+      favorite.length > 0 && setFavorite([name]);
       console.log('favoriteList', favoriteList);
-    } else {
-      favoriteList.length > 0 && favoriteList.pop();
     }
   };
   return (
@@ -38,9 +38,9 @@ const DogCard = ({
         <Image
           loader={imageLoader}
           unoptimized
-          src="https://cdn2.thedogapi.com/images/BJa4kxc4X.jpg"
-          height={300}
-          width={300}
+          src={image.url}
+          height={image.height}
+          width={image.width}
           alt={referenceImageID}
           className="rounded-lg"
         />
@@ -49,14 +49,16 @@ const DogCard = ({
         Name: {name}
       </h2>
       <div className="flex flex-col gap-2">
-        <div>Breed for: {bredFor}</div>
-        <div>Breed group is: {breedGroup}</div>
-        <div>Temperament: {temperament}</div>
-        <div>Description: {description}</div>
-        <div>Origin is: {origin}</div>
-        <div>Weight: {weight.metric} kg</div>
-        <div>Height: {height.metric} cm</div>
-        <div>Life span is: {lifeSpan} average</div>
+        {bredFor ? <div>Breed for: {bredFor}</div> : null}
+        {breedGroup ?  <div>Breed group is: {breedGroup}</div> : null}
+        {temperament ? <div>Temperament: {temperament}</div> : null}
+        {description ? <div>Description: {description}</div> : null}
+        {origin ? <div>Origin is: {origin}</div> : null}
+        {weight.metric ?   <div>Weight: {weight.metric} kg</div> : null}
+        {height.metric ? <div>Height: {height.metric} cm</div> : null}
+        {lifeSpan ? <div>Life span is: {lifeSpan} average</div> : null}
+        {history ? <div>History {history}</div> : null}
+        {countryCode ? <div>Country code is: {countryCode} </div> : null}
       </div>
       <button className="p-2" onClick={handleClick}>
         {isFavorite ? (
