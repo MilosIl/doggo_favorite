@@ -1,6 +1,5 @@
 import './globals.css';
 import SearchBar from '../Components/SearchBar/SearchBar';
-import SearchBar1 from '../Components/SearchBar/SearchBar1';
 import FavoriteList from '../Components/FavoriteList/FavoriteList';
 import Footer from '../Components/Footer/Footer';
 
@@ -22,8 +21,7 @@ export default function Home() {
             find information about breed of dogs
           </p>
           <main>
-            {/* <SearchBar /> */}
-            <SearchBar1 />
+            <SearchBar />
           </main>
         </div>
       </div>

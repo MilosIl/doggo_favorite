@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import imageLoad from '../../../imageLoader';
 import useDebounce from '../../hooks/useDebounce';
 import { Breeds } from '../../models/types';
+import imageLoader from '../../../imageLoader';
 
-export interface ISearchBar {}
+
 
 async function getBreedsName(search: string): Promise<string[]> {
   const res = await fetch(
@@ -27,7 +27,7 @@ async function getBreedsName(search: string): Promise<string[]> {
   });
 }
 
-const SearchBar: React.FC<ISearchBar> = () => {
+const SearchBar: React.FC = () => {
 
   const [search, setSearch] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -68,7 +68,7 @@ const SearchBar: React.FC<ISearchBar> = () => {
             <Image
               src="./search.svg"
               alt="search"
-              loader={imageLoad}
+              loader={imageLoader}
               width={24}
               height={24}
               unoptimized

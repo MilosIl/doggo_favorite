@@ -1,4 +1,4 @@
-const imageLoad = ({ src }: { src: string }) => {
+const imageLoader = ({ src }: { src: string }) => {
   return src;
 };
-export default imageLoad;
+export default imageLoader;
