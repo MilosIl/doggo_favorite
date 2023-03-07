@@ -5,8 +5,7 @@ import Image from 'next/image';
 import useDebounce from '../../hooks/useDebounce';
 import { Breeds } from '../../models/types';
 import imageLoader from '../../../imageLoader';
-
-
+import Link from 'next/link';
 
 async function getBreedsName(search: string): Promise<string[]> {
   const res = await fetch(
@@ -20,7 +19,7 @@ async function getBreedsName(search: string): Promise<string[]> {
     setTimeout(() => {
       resolve(
         breedsNames.filter((breedName) =>
-          breedName.toLowerCase().includes(search.toLowerCase())
+          breedName.toLowerCase().includes(search.toLowerCase()),
         )
       );
     }, 500);
@@ -28,7 +27,6 @@ async function getBreedsName(search: string): Promise<string[]> {
 }
 
 const SearchBar: React.FC = () => {
-
   const [search, setSearch] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const debounceSearch = useDebounce(search, 500);
@@ -43,6 +41,7 @@ const SearchBar: React.FC = () => {
       setSuggestions([]);
       if (debounceSearch.length > 0) {
         const data = await getBreedsName(debounceSearch);
+        console.log('data', data)
         if (!isLoading) {
           setSuggestions(data);
         }
@@ -55,8 +54,8 @@ const SearchBar: React.FC = () => {
 
   return (
     <>
-      <div className="rounded-lg m-1 p-2 bg-green-700 border-green-700  border-2 min-w-xs  hover:drop-shadow-md hover:bg-green-800 focus:bg-green-800 focus-within:border-green-800">
-        <label className='flex justify-center align-middle gap-2'>
+      <div className="rounded-lg m-1 p-1 bg-green-700 border-green-700  border-2 w-80 hover:drop-shadow-md hover:bg-green-800 focus:bg-green-800 focus-within:border-green-800">
+        <label className="flex justify-center align-middle  relative">
           <input
             type="text"
             value={search}
@@ -66,6 +65,7 @@ const SearchBar: React.FC = () => {
           />
           <button>
             <Image
+              className=" absolute top-2 right-2"
               src="./search.svg"
               alt="search"
               loader={imageLoader}
@@ -76,11 +76,19 @@ const SearchBar: React.FC = () => {
           </button>
         </label>
       </div>
-      <ul className='bg-slate-200 list-none'>
- 
+      <ul className="bg-slate-200 list-none">
         {suggestions &&
           suggestions.map((suggestion, index) => {
-            return <li key={index} className='odd:bg-slate-300 mt-2 p-2 hover:bg-green-500 cursor-pointer'>{suggestion}</li>;
+            return (
+              <li
+                key={index}
+                className="odd:bg-slate-300 my-1 p-2 hover:bg-green-500 cursor-pointer"
+              >
+                <Link href={`/results/${suggestion}`}>
+                  {suggestion}
+                </Link>
+              </li>
+            );
           })}
       </ul>
     </>
