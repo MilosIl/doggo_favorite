@@ -1,14 +1,13 @@
 import './globals.css';
 import SearchBar from '../Components/SearchBar/SearchBar';
 import FavoriteList from '../Components/FavoriteList/FavoriteList';
-import Footer from '../Components/Footer/Footer';
 
 // import {FavoriteContext} from '../context/FavoriteContext'
 
 export default function Home() {
   return (
-    <div className="relative container mx-auto">
-      <div className="flex min-h-screen">
+    <div className="container mx-auto ">
+      <div className="flex h-screen overflow-y-hidden ">
         <FavoriteList />
         <div className="flex flex-col items-center mx-auto">
           <h1 className="text-2xl font-extrabold  text-zinc-800">
@@ -22,7 +21,6 @@ export default function Home() {
           </main>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -3,18 +3,18 @@ export interface Breeds {
   height: Eight;
   id: number;
   name: string;
-  bredFor?: string;
-  breedGroup?: BreedGroup;
-  lifeSpan: string;
-  temperament?: string;
-  origin?: string;
-  referenceImageID: string;
+  bred_for: string;
+  breed_group: BreedGroup;
+  life_span: string;
+  temperament: string;
+  origin: string;
+  reference_image_iD: string;
   image: Image;
-  countryCode?: CountryCode;
-  description?: string;
-  history?: string;
+  country_code: CountryCode;
+  description: string;
+  history: string;
 }
-export type BreedsName = Pick<Breeds, 'name'| 'id'>
+export type BreedsName = Pick<Breeds, 'name' | 'id'>;
 
 export type BreedGroup =
   | 'Toy'

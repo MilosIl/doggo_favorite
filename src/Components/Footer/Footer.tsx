@@ -1,6 +1,4 @@
-export interface IFooter {}
-
-const Footer: React.FC<IFooter> = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="absolute bottom-0 w-full bg-gray-200 text-zinc-800 text-center py-4 font-bold">
       Made by{' '}
