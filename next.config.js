@@ -7,7 +7,7 @@ const nextConfig = {
       'https://cdn2.thedogapi.com/images/',
       'https://api.thedogapi.com/v1/images',
     ],
-    loader: 'custom',
+    unoptimized: true,
     path: '/',
   },
   experimental: {

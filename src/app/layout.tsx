@@ -1,6 +1,5 @@
 import './globals.css';
 import { FavoriteProvider } from '../context/FavoriteContext';
-import Footer from '../Components/Footer/Footer';
 export default function RootLayout({
   children,
 }: {
@@ -11,7 +10,6 @@ export default function RootLayout({
       <head />
       <body>
         <FavoriteProvider>{children}</FavoriteProvider>
-        <Footer/>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 import { Breeds } from '../../../models/types';
 import getBreed from '../../../lib/gretBreed';
-
+import Image from 'next/image';
 
 type Params = {
   params: {
@@ -11,24 +11,30 @@ type Params = {
 export default async function BreedPage({ params: { breedName } }: Params) {
   const breedData: Promise<Breeds> = getBreed(breedName);
   const breed = await Promise.resolve(breedData);
-
-
   return (
-    <div className="m-4 p-4 bg-slate-300 rounded-lg min-w-xs h-fit " key={breed.id}>
-      <h2 className="text-xl font-semibold border-b border-b-green-700 mb-2">
-        Name: {breed.name}
+    <div key={breed.id} className="bg-slate-300 rounded-lg p-4  w-fit">
+      <h2 className="text-xl text-zinc-800 font-semibold border-b pb-1 border-b-green-700">
+        {breed.name}
       </h2>
-      <div className="flex flex-col gap-2">
-        <div>Breed for: {breed.bred_for}</div>
-        <div>Breed group is: {breed.breed_group}</div>
-        <div>Temperament: {breed.temperament}</div>
-        <div>Description: {breed.description}</div>
-        <div>Origin is: {breed.origin}</div>
-        <div>Weight: {breed.weight.metric} kg</div>
-        <div>Height: {breed.height.metric} cm</div>
-        <div>Life span is: {breed.life_span} average</div>
+      <div className="flex flex-col gap-2 mt-4">
+        <div className="w-[300px] h-[300px] grid place-items-center ">
+          <Image
+            src={`https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`}
+            width={300}
+            height={300}
+            alt={breed.name}
+            unoptimized
+          />
+        </div>
+        {breed.bred_for ? <p>Breed for: {breed.bred_for}</p> : ''}
+        {breed.breed_group ? <p>Breed group is: {breed.breed_group}</p> : ''}
+        {breed.temperament ? <p>Temperament: {breed.temperament}</p> : ''}
+        {breed.description ? <p>Description: {breed.description}</p> : ''}
+        {breed.origin ? <p>Origin is: {breed.origin}</p> : ''}
+        {breed.weight.metric ? <p>Weight: {breed.weight.metric} kg</p> : ''}
+        {breed.height.metric ? <p>Height: {breed.height.metric} cm</p> : ''}
+        {breed.life_span ? <p>Live span is: {breed.life_span} average</p> : ''}
       </div>
-
     </div>
   );
 }

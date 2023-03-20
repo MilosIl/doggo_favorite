@@ -8,7 +8,7 @@ export interface Breeds {
   life_span: string;
   temperament: string;
   origin: string;
-  reference_image_iD: string;
+  reference_image_id: string;
   image: Image;
   country_code: CountryCode;
   description: string;
