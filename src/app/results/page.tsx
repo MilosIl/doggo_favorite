@@ -1,7 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import getBreeds from '../../lib/getBreeds';
 import { Breeds } from '../../models/types';
-import Image from 'next/image';
 
 export default async function page() {
   const breedData: Promise<Breeds[]> = getBreeds();
@@ -10,8 +10,16 @@ export default async function page() {
     <section className="container mx-auto flex flex-wrap gap-4">
       {breeds.map((breed) => {
         return (
-          <div key={breed.id} className="bg-slate-300 rounded-lg p-2 m-2 w-[20em]">
-            <Link href={`/results/${breed.id}`} className='text-xl text-zinc-800 font-semibold border-b pb-1 border-b-green-700'>{breed.name}</Link>
+          <div
+            key={breed.id}
+            className="bg-slate-300 rounded-lg p-2 m-2 w-[20em]"
+          >
+            <Link
+              href={`/results/${breed.id}`}
+              className="text-xl text-zinc-800 font-semibold border-b pb-1 border-b-green-700"
+            >
+              {breed.name}
+            </Link>
             <div className="flex flex-col gap-2 mt-4">
               <div className="w-[200px] h-[200px] truncate grid justify-center">
                 <Image
