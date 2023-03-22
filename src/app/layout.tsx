@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body>
+      <body className='relative'>
         <FavoriteProvider>{children}</FavoriteProvider>
       </body>
     </html>

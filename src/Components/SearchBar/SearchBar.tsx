@@ -1,35 +1,15 @@
 'use client';
-
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import useDebounce from '../../hooks/useDebounce';
-import { Breeds } from '../../models/types';
-import imageLoader from '../../../imageLoader';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
-async function getBreedsName(search: string): Promise<string[]> {
-  const res = await fetch(
-    'https://api.thedogapi.com/v1/breeds?api_key=live_YXejSYT0lmejDsPBw4qk6YVyRbGnP8HIGe489tK26eJkzKOAi7gmnMPhGLzlwQ3o',
-    { cache: 'force-cache' }
-  );
-  const breeds: Breeds[] = await res.json();
-  const breedsNames = breeds.map((breed) => breed.name);
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(
-        breedsNames.filter((breedName) =>
-          breedName.toLowerCase().includes(search.toLowerCase()),
-        )
-      );
-    }, 500);
-  });
-}
+import useDebounce from '@/hooks/useDebounce';
+import getBreeds from '@/lib/getBreeds';
+import { Breeds } from '@/models/types';
 
 const SearchBar: React.FC = () => {
   const [search, setSearch] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const debounceSearch = useDebounce(search, 500);
+  const [results, setResults] = useState<Breeds[]>([]);
+  const debounceSearch = useDebounce(search, 700);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -38,16 +18,18 @@ const SearchBar: React.FC = () => {
   useEffect(() => {
     let isLoading = false;
     (async () => {
-      setSuggestions([]);
+      setResults([]);
       if (debounceSearch.length > 0) {
-        const data = await getBreedsName(debounceSearch);
-        console.log('data', data)
+        const data: Breeds[] = await getBreeds();
         if (!isLoading) {
-          setSuggestions(data);
+          const filterBreed = data.filter((breed) =>
+            breed.name.toLowerCase().includes(debounceSearch.toLowerCase())
+          );
+          setResults(filterBreed);
         }
       }
       return () => {
-        isLoading = true;
+        isLoading = false;
       };
     })();
   }, [debounceSearch]);
@@ -55,38 +37,25 @@ const SearchBar: React.FC = () => {
   return (
     <>
       <div className="rounded-lg m-1 p-1 bg-green-700 border-green-700  border-2 w-80 hover:drop-shadow-md hover:bg-green-800 focus:bg-green-800 focus-within:border-green-800">
-        <label className="flex justify-center align-middle  relative">
+        <label htmlFor="search">
           <input
             type="text"
+            className="w-full outline-none p-2 rounded-lg"
             value={search}
             onChange={handleChange}
-            className="w-full outline-none p-2 rounded-lg"
-            placeholder="type here.."
+            placeholder="type here..."
           />
-          <button>
-            <Image
-              className=" absolute top-2 right-2"
-              src="./search.svg"
-              alt="search"
-              loader={imageLoader}
-              width={24}
-              height={24}
-              unoptimized
-            />
-          </button>
         </label>
       </div>
-      <ul className="bg-slate-200 list-none">
-        {suggestions &&
-          suggestions.map((suggestion, index) => {
+      <ul className="mt-2 bg-slate-400 ">
+        {results &&
+          results.map((result) => {
             return (
               <li
-                key={index}
-                className="odd:bg-slate-300 my-1 p-2 hover:bg-green-500 cursor-pointer"
+                key={result.id}
+                className="p-2 my-1 odd:bg-slate-300 hover:bg-green-700"
               >
-                <Link href={`/results/${suggestion}`}>
-                  {suggestion}
-                </Link>
+                <Link href={`/results/${result.id}`}>{result.name}</Link>
               </li>
             );
           })}
