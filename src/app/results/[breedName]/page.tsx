@@ -1,5 +1,5 @@
 import { Breeds } from '../../../models/types';
-import getBreed from '../../../lib/gretBreed';
+import getBreed from '../../../lib/getBreed';
 import Image from 'next/image';
 
 type Params = {

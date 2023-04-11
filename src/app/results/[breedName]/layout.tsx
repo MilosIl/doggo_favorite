@@ -9,11 +9,11 @@ export default function breedLayout({
   return (
     <html>
       <body>
-          <div className="flex container mx-auto p-8 gap-8 ">
-            <FavoriteList />
-            <main>{children}</main>
-            <Footer/>
-          </div>
+        <div className="flex container mx-auto p-8 gap-8 ">
+          <FavoriteList />
+          <main>{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
