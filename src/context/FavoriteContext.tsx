@@ -1,5 +1,5 @@
 'use client';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+
 import {
   createContext,
   Dispatch,
@@ -9,22 +9,19 @@ import {
   useState,
 } from 'react';
 interface IFavoriteContext {
-  favorite: string[];
-  setFavorite: Dispatch<SetStateAction<string[]>>;
+  favorite: {name:string, id:number}[];
+  setFavorite: Dispatch<SetStateAction<{ name: string; id: number; }[]>>;
 }
 
-export function useLocal(){
-  return useLocalStorage('favoriti',['123','321'])
-}
 
 const FavoriteContext = createContext<IFavoriteContext>({
-  favorite: [],
+  favorite: [{'name':'German Shepherd Dog','id':115}, {'name':'Miniature Schnauzer', 'id':168}],
   setFavorite: (): string[] => [],
 });
 
 export const FavoriteProvider = ({ children }: { children: ReactNode }) => {
   
-  const [favorite, setFavorite] = useState<string[]>(['German Shepherd Dog', 'Miniature Schnauzer']);
+  const [favorite, setFavorite] = useState<{name:string, id:number}[]>([{'name':'German Shepherd Dog','id':115}, {'name':'Miniature Schnauzer', 'id':168}]);
 
   return (
     <FavoriteContext.Provider value={{ favorite, setFavorite }}>
