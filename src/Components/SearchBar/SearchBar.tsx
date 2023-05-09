@@ -9,7 +9,7 @@ import { Breeds } from '@/models/types';
 const SearchBar: React.FC = () => {
   const [search, setSearch] = useState<string>('');
   const [results, setResults] = useState<Breeds[]>([]);
-  const debounceSearch = useDebounce(search, 700);
+  const debounceSearch = useDebounce(search, 300);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);

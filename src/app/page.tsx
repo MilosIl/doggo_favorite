@@ -1,15 +1,22 @@
-// import SearchBar from '../Components/SearchBar/SearchBar';
+'use client';
+import { useState } from 'react';
 import SearchBar from '../Components/SearchBar/SearchBar';
 import FavoriteList from '../Components/FavoriteList/FavoriteList';
 import Footer from '../Components/Footer/Footer';
-
-// import {FavoriteContext} from '../context/FavoriteContext'
-
+import Navbar from '../Components/Navbar/Navbar';
 export default function Home() {
+
+  
+  const [showSidebar, setShowSidebar] = useState(true);
+
+  const handleToggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
   return (
-    <div className="container mx-auto ">
+    <div>
+      <Navbar toggleSidebar={handleToggleSidebar} />
       <div className="flex overflow-y-hidden ">
-        <FavoriteList />
+        <FavoriteList isVisible={showSidebar} />
         <div className="flex flex-col items-center mx-auto min-h-screen">
           <h1 className="text-2xl font-extrabold  text-zinc-800">
             Welcome to Doggo site

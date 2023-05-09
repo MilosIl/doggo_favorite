@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body className='relative'>
+      <body className='container mx-auto '>
         <FavoriteProvider>{children}</FavoriteProvider>
       </body>
     </html>
