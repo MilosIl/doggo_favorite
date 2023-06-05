@@ -1,13 +1,16 @@
+import Link from 'next/link';
+
 const Footer: React.FC = () => {
   return (
     <footer className="bottom-0 container bg-gray-200 text-zinc-800 text-center py-4 font-bold">
       Made by{' '}
-      <a
+      <Link
+        target="_blank"
         className="no-underline hover:cursor-pointer hover:underline hover:underline-offset-2 "
-        href="www.mines-dev.com"
+        href="https://www.mines-dev.com"
       >
         Mines-dev
-      </a>{' '}
+      </Link>{' '}
       2023 ©
     </footer>
   );

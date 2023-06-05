@@ -8,20 +8,23 @@ import {
   useContext,
   useState,
 } from 'react';
-interface IFavoriteContext {
-  favorite: {name:string, id:number}[];
-  setFavorite: Dispatch<SetStateAction<{ name: string; id: number; }[]>>;
+interface FavoriteContextProps {
+  favorite: { name: string; id: number }[];
+  setFavorite: Dispatch<SetStateAction<{ name: string; id: number }[]>>;
 }
+const favoriteList = [
+  { name: 'Miniature Schnauzer', id: 168 },
+  { name: 'German Shepherd Dog', id: 115 },
+];
 
-
-const FavoriteContext = createContext<IFavoriteContext>({
-  favorite: [{'name':'German Shepherd Dog','id':115}, {'name':'Miniature Schnauzer', 'id':168}],
+const FavoriteContext = createContext<FavoriteContextProps>({
+  favorite: favoriteList,
   setFavorite: (): string[] => [],
 });
 
 export const FavoriteProvider = ({ children }: { children: ReactNode }) => {
-  
-  const [favorite, setFavorite] = useState<{name:string, id:number}[]>([{'name':'German Shepherd Dog','id':115}, {'name':'Miniature Schnauzer', 'id':168}]);
+  const [favorite, setFavorite] =
+    useState<{ name: string; id: number }[]>(favoriteList);
 
   return (
     <FavoriteContext.Provider value={{ favorite, setFavorite }}>

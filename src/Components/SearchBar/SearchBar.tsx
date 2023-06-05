@@ -36,14 +36,14 @@ const SearchBar: React.FC = () => {
 
   return (
     <>
-      <div className="rounded-lg m-1 p-1 bg-green-700 border-green-700  border-2 w-80 hover:drop-shadow-md hover:bg-green-800 focus:bg-green-800 focus-within:border-green-800">
+      <div className="rounded-lg m-1 p-1 bg-green-700 border-green-700  border-2 md:w-80 max-sm:w-60 hover:drop-shadow-md hover:bg-green-800 focus:bg-green-800 focus-within:border-green-800">
         <label htmlFor="search">
           <input
             type="text"
             className="w-full outline-none p-2 rounded-lg"
             value={search}
             onChange={handleChange}
-            placeholder="type here..."
+            placeholder="Type here..."
           />
         </label>
       </div>

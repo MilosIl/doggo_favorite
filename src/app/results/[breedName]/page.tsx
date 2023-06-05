@@ -1,6 +1,7 @@
 import { Breeds } from '../../../models/types';
 import getBreed from '../../../lib/getBreed';
 import Image from 'next/image';
+import FavoriteButton from '@/Components/FavoriteButton/FavoriteButton';
 
 type Params = {
   params: {
@@ -11,8 +12,13 @@ type Params = {
 export default async function BreedPage({ params: { breedName } }: Params) {
   const breedData: Promise<Breeds> = getBreed(breedName);
   const breed = await Promise.resolve(breedData);
+
   return (
-    <div key={breed.id} className="bg-slate-300 rounded-lg p-4  w-fit">
+    
+    <section
+      key={breed.id}
+    className="bg-slate-300 rounded-lg p-4 mb-4 h-fit  w-fit"
+    >
       <h2 className="text-xl text-zinc-800 font-semibold border-b pb-1 border-b-green-700">
         {breed.name}
       </h2>
@@ -35,6 +41,7 @@ export default async function BreedPage({ params: { breedName } }: Params) {
         {breed.height.metric ? <p>Height: {breed.height.metric} cm</p> : ''}
         {breed.life_span ? <p>Live span is: {breed.life_span} average</p> : ''}
       </div>
-    </div>
+      <FavoriteButton id={breed.id} name={breed.name} />
+    </section>
   );
 }
