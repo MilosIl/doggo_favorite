@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import FavoriteListHead from '../FavoriteListHead/FavoriteListHead';
+import FavoriteListHead from './FavoriteList/FavoriteListHead';
 
 const Navbar = ({ toggleSidebar }: any) => {
   return (

@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import './globals.css';
 import { FavoriteProvider } from '../context/FavoriteContext';
-import Footer from '@/Components/Footer/Footer';
-import Navbar from '@/Components/Navbar/Navbar';
+import Footer from '@/Components/Footer';
+import Navbar from '@/Components/Navbar';
 import FavoriteList from '@/Components/FavoriteList/FavoriteList';
 export default function RootLayout({
   children,
