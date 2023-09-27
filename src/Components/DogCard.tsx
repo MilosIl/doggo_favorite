@@ -34,8 +34,8 @@ const DogCard = ({
         {temperament ? <p>Temperament: {temperament}</p> : ''}
         {description ? <p>Description: {description}</p> : ''}
         {origin ? <p>Origin is: {origin}</p> : ''}
-        {weight.metric ? <p>Weight: {weight.metric} kg</p> : ''}
-        {height.metric ? <p>Height: {height.metric} cm</p> : ''}
+        {weight.metric ? <p>Weight: {weight?.metric} kg</p> : ''}
+        {height.metric ? <p>Height: {height?.metric} cm</p> : ''}
         {life_span ? <p>Live span is: {life_span} average</p> : ''}
       </div>
     </div>
