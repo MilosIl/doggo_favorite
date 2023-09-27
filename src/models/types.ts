@@ -31,7 +31,7 @@ export type CountryCode = 'AG' | 'US' | 'AU';
 
 export interface Eight {
   imperial: string;
-  metric?: string;
+  metric: string;
 }
 
 export interface Image {

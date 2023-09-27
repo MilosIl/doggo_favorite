@@ -1,5 +1,5 @@
-import { Breeds } from '../../../models/types';
-import getBreed from '../../../lib/getBreed';
+import { Breeds } from '@/models/types';
+import getBreed from '@/lib/getBreed';
 import FavoriteButton from '@/Components/FavoriteList/FavoriteButton';
 import DogCard from '@/Components/DogCard';
 
