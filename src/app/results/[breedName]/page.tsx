@@ -16,7 +16,7 @@ export default async function BreedPage({ params: { breedName } }: Params) {
   return (
     <section
       key={breed.id}
-      className="bg-slate-300 rounded-lg p-4 mb-4 h-fit  w-fit"
+      className="bg-green-200 rounded-lg p-4 mb-4 h-fit  w-fit"
     >
       <h2 className="text-xl text-zinc-800 font-semibold border-b pb-1 border-b-green-700">
         {breed.name}

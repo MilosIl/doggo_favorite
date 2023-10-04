@@ -26,7 +26,7 @@ const FavoriteList: React.FC<FavoriteListProps> = ({ isVisible }) => {
     <>
       {isVisible && (
         <aside
-          className={`block md:w-1/5 h-fit max-w-sm max-sm:absolute bg-slate-200  ${
+          className={`block md:w-1/5 h-fit max-w-sm max-sm:absolute bg-green-200  ${
             isVisible
               ? 'max-sm:block max-sm:absolute max-sm:left-0 max-sm:top-4 max-sm:w-max '
               : 'max-sm:hidden '

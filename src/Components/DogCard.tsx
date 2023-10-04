@@ -15,7 +15,7 @@ const DogCard = ({
 }: Breeds) => {
   return (
     <div
-      className="m-4 py-2 bg-slate-300 rounded-lg min-w-xs min-h-fit"
+      className="m-4 py-2 rounded-lg min-w-xs min-h-fit"
       key={id}
     >
       <div className="flex justify-center mb-4 ">

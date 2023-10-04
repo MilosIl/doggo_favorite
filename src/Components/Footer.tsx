@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bottom-0 container bg-gray-200 text-zinc-800 text-center py-4 font-bold">
+    <footer className="bottom-0 container bg-green-100 text-zinc-800 text-center py-4 font-bold">
       Made by{' '}
       <Link
         target="_blank"

@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body className="container mx-auto  ">
+      <body className="container mx-auto bg-[url('/paw.png')] bg-right-bottom">
         <Navbar toggleSidebar={handleToggleSidebar} />
         <div className="flex justify-between px-8 gap-20 h-[87vh] ">
           <FavoriteProvider>
